@@ -1,7 +1,9 @@
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
 
-context.scale(20, 20);
+context.canvas.height = window.innerHeight;
+context.canvas.width = window.innerWidth * .483;
+context.scale(30, 27);
 
 function arenaSweep() {
     let rowCount = 1; 
@@ -90,7 +92,7 @@ function createPiece(type) {
 }
 
 function draw() {
-    context.fillStyle = '#000';
+    context.fillStyle = '#F0F0F0';
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     drawMatrix(arena, {x: 0, y: 0});
@@ -106,6 +108,10 @@ function drawMatrix(matrix, offset) {
             }
         });
     });
+}
+
+function getArenaSize(){
+    console.log('placeholder')
 }
 
 function merge(arena, player) {
@@ -186,7 +192,7 @@ function rotate(matrix, dir) {
 }
 
 let dropCounter = 0;
-let dropInterval = 100000;
+let dropInterval = 1000000;
 
 let lastTime = 0;
 function update(time = 0) {
@@ -206,17 +212,17 @@ function updateScore() {
     document.getElementById('score').innerText = player.score;
 }
 
-const arena = createMatrix(12, 20);
+const arena = createMatrix(22, 29);
 
 const colors = [
     null,
-    'red',
-    'blue',
-    'violet',
-    'green',
-    'purple',
-    'orange',
-    'pink'
+    '#588C7E',
+    '#689581',
+    '#ACBC8A',
+    '#ECD189',
+    '#F2B476',
+    '#E99469',
+    '#DB6B5C'
 ];
 
 const player = {

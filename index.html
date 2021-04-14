@@ -2,10 +2,25 @@
 <html lang="en">
     <head>
         <title>Tetris</title>
+        <link rel="stylesheet" type="text/css" href="tetris.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"> 
     </head>
     <body>
-        <div id="score"></div>
-        <canvas id="tetris" width="240" height="400"></canvas>
-        <script src="tetris.js"></script>
+        <div class="container">
+            <div class="side-column">
+                <div class="scorecard">
+                    <h3>Score</h3>
+                    <div id="score"></div>
+                </div>
+            </div>
+            <div> 
+                <canvas id="tetris"></canvas>
+                <script src="tetris.js"></script>
+            </div>
+            <div class="side-column">
+                <div></div>
+            </div>
+        </div>
     </body>
 </html>

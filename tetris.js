@@ -205,7 +205,6 @@ function playerReset() {
     player.position.y = 0;
     player.position.x = (arena[0].length / 2 | 0) - (player.matrix[0].length / 2 | 0);
     if (collide(arena, player)) {
-        highScore = player.score;
         let playAgain = true;
         if(showPopUp) {
             playAgain = window.confirm(`The next piece didn't fit in the play area. You scored ${player.score} points and cleared ${player.lines} lines. Play again?`);
@@ -214,6 +213,7 @@ function playerReset() {
         if(playAgain) {
             arena.forEach(row => row.fill(0));
             player.score = 0;
+            player.lines = 0;
             updateScore();
         } else {
             pausePlay = true;
@@ -264,6 +264,10 @@ function update(time = 0) {
 function updateScore() {
     document.getElementById('score').innerText = player.score;
     document.getElementById('lines').innerText = player.lines;
+    if(player.score > highScore) {
+        highScore = player.score;
+    }
+    document.getElementById('high-score').innerText = highScore;
 }
 
 function clickPlay() {

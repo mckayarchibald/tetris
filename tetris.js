@@ -5,6 +5,8 @@ context.canvas.height = 729;
 context.canvas.width = 630;
 context.scale(30, 27);
 
+let lineCount = 0;
+
 function arenaSweep() {
     let rowCount = 1;
     outer: for (let y = arena.length -1; y > 0; --y) {
@@ -19,8 +21,16 @@ function arenaSweep() {
         ++y;
 
         player.score += rowCount * 10;
-        player.score += 1;
         rowCount *= 2;
+        player.lines++;
+        lineCount++;
+        
+        if(lineCount === 5) {
+            lineCount = 0;
+            if(dropInterval > 50) {
+                dropInterval = dropInterval - 10;
+            }
+        }
     }
 }
 
@@ -257,13 +267,13 @@ document.addEventListener('keydown', event => {
 
 const colors = [
     null,
-    '#FF0D72',
-    '#0DC2FF',
-    '#0DFF72',
-    '#F538FF',
-    '#FF8E0D',
-    '#FFE138',
-    '#3877FF',
+    '#588C7E',
+    '#689581',
+    '#ACBC8A',
+    '#ECD189',
+    '#F2B476',
+    '#E99469',
+    '#DB6B5C'
 ];
 
 const arena = createMatrix(21, 27);

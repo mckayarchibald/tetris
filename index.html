@@ -4,7 +4,7 @@
         <title>Tetris</title>
         <link rel="stylesheet" type="text/css" href="tetris.css" />
         <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     </head>
     <body>
         <div class="container">
@@ -25,7 +25,19 @@
                 <script src="tetris.js"></script>
             </div>
             <div class="side-column">
-                <div></div>
+                <div class="scorecard">
+                    <div class="button-container">
+                        <button id="pause-button" onclick="clickPause()"><b>||</b></button>
+                        <button id="play-button" onclick="clickPlay()">⯈</button>
+                        <button id="restart-button" onclick="clickRestart()">⟳</button>
+                    </div>
+                    <div>
+                        <h3>High
+                            <br> 
+                            Score</h3>
+                        <div id="high-score"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

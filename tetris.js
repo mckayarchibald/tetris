@@ -14,14 +14,12 @@ function arenaSweep() {
             }
         }
 
-
         const row = arena.splice(y, 1)[0].fill(0);
         arena.unshift(row);
         ++y;
 
-
         player.score += rowCount * 10;
-        player.lines += 1;
+        player.score += 1;
         rowCount *= 2;
     }
 }
@@ -105,7 +103,6 @@ function draw() {
     drawMatrix(player.matrix, player.pos);
 }
 
-
 function drawMatrix(matrix, offset) {
     matrix.forEach((row, y) => {
         row.forEach((value, x) => {
@@ -127,6 +124,27 @@ function merge(arena, player) {
             }
         });
     });
+}
+
+function rotate(matrix, dir) {
+    for (let y = 0; y < matrix.length; ++y) {
+        for (let x = 0; x < y; ++x) {
+            [
+                matrix[x][y],
+                matrix[y][x],
+            ] = [
+                matrix[y][x],
+                matrix[x][y],
+            ];
+        }
+    }
+
+
+    if (dir > 0) {
+        matrix.forEach(row => row.reverse());
+    } else {
+        matrix.reverse();
+    }
 }
 
 function rotate(matrix, dir) {
@@ -178,7 +196,6 @@ function playerReset() {
     if (collide(arena, player)) {
         arena.forEach(row => row.fill(0));
         player.score = 0;
-        player.lines = 0;
         updateScore();
     }
 }
@@ -240,13 +257,13 @@ document.addEventListener('keydown', event => {
 
 const colors = [
     null,
-    '#588C7E',
-    '#689581',
-    '#ACBC8A',
-    '#ECD189',
-    '#F2B476',
-    '#E99469',
-    '#DB6B5C'
+    '#FF0D72',
+    '#0DC2FF',
+    '#0DFF72',
+    '#F538FF',
+    '#FF8E0D',
+    '#FFE138',
+    '#3877FF',
 ];
 
 const arena = createMatrix(21, 27);

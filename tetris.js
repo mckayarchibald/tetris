@@ -227,7 +227,7 @@ function playerReset() {
     }
 }
 
-function playerRotate(dir) {
+function rotatePiece(dir) {
     const pos = player.position.x;
     let offset = 1;
     rotate(player.matrix, dir);
@@ -270,6 +270,14 @@ function updateScore() {
     document.getElementById('high-score').innerText = highScore;
 }
 
+function clickPause() {
+    pausePlay = true;
+    const playButton = document.getElementById('play-button');
+    const pauseButton = document.getElementById('pause-button');
+    playButton.style.visibility = 'visible';
+    pauseButton.style.visibility = 'hidden';
+}
+
 function clickPlay() {
     pausePlay = false;
     const playButton = document.getElementById('play-button');
@@ -277,14 +285,6 @@ function clickPlay() {
     playButton.style.visibility = 'hidden';
     pauseButton.style.visibility = 'visible';
     update();
-}
-
-function clickPause() {
-    pausePlay = true;
-    const playButton = document.getElementById('play-button');
-    const pauseButton = document.getElementById('pause-button');
-    playButton.style.visibility = 'visible';
-    pauseButton.style.visibility = 'hidden';
 }
 
 function clickRestart() {
@@ -307,10 +307,8 @@ document.addEventListener('keydown', event => {
         playerMove(1);
     } else if (event.keyCode === 40) {
         playerDrop();
-    } else if (event.keyCode === 81) {
-        playerRotate(-1);
-    } else if (event.keyCode === 87) {
-        playerRotate(1);
+    } else if (event.keyCode === 38) {
+        rotatePiece(1);
     }
 });
 

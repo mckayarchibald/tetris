@@ -21,6 +21,7 @@ body {
     display: flex;
     align-items: center;
     border: .5px solid #689581;
+    background-color: #F0F0F0;
 }
 
 .side-column {

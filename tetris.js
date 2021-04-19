@@ -1,8 +1,8 @@
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
 
-context.canvas.height = window.innerHeight;
-context.canvas.width = window.innerWidth * .483;
+context.canvas.height = 729;
+context.canvas.width = 630;
 context.scale(30, 27);
 
 function arenaSweep() {
@@ -19,6 +19,7 @@ function arenaSweep() {
         ++y;
 
         player.score += rowCount * 10;
+        player.lines += 1;
         rowCount *= 2;
     }
 }
@@ -110,10 +111,6 @@ function drawMatrix(matrix, offset) {
     });
 }
 
-function getArenaSize(){
-    console.log('placeholder')
-}
-
 function merge(arena, player) {
     player.matrix.forEach((row, y) => {
         row.forEach((value, x) => {
@@ -152,6 +149,7 @@ function playerReset() {
     if(collide(arena, player)) {
         arena.forEach(row => row.fill(0));
         player.score = 0;
+        player.lines = 0;
         updateScore();
     }
 }
@@ -180,7 +178,7 @@ function rotate(matrix, dir) {
             ] = [
                 matrix[y][x],
                 matrix[x][y],
-            ]
+            ];
         }
     }
 
@@ -192,7 +190,7 @@ function rotate(matrix, dir) {
 }
 
 let dropCounter = 0;
-let dropInterval = 1000000;
+let dropInterval = 1000;
 
 let lastTime = 0;
 function update(time = 0) {
@@ -210,9 +208,10 @@ function update(time = 0) {
 
 function updateScore() {
     document.getElementById('score').innerText = player.score;
+    document.getElementById('lines').innerText = player.lines;
 }
 
-const arena = createMatrix(22, 29);
+const arena = createMatrix(21, 27);
 
 const colors = [
     null,
@@ -229,6 +228,7 @@ const player = {
     pos: {x: 0, y: 0},
     matrix: null,
     score: 0,
+    lines: 0,
 }
 
 document.addEventListener('keydown', event => {
